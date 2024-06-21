@@ -2,6 +2,21 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TestController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\QuestionsController;
+use App\Http\Controllers\ChoicesController;
+use App\Http\Controllers\QuizzesController;
+
+
+
+Route::get('/test', [TestController::class, 'test'])
+    ->name('test');
+Route::get('/users', [UserController::class, 'users'])
+    ->name('users');
+Route::resource('questions', QuestionsController::class);
+Route::resource('choices', ChoicesController::class);
+Route::resource('quizzes', QuizzesController::class);
 
 /*
 |--------------------------------------------------------------------------
@@ -28,4 +43,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

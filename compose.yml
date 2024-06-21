@@ -41,31 +41,14 @@ services:
       - MYSQL_USER=posse
       - MYSQL_PASSWORD=password
       - TZ=Asia/Tokyo
-
-  php:
-    build:
-      context: .
-      dockerfile: ./docker/php/Dockerfile
-    volumes:
-      - .:/work/web
-      - ./docker/php/php.ini:/usr/local/etc/php/php.ini
-    working_dir: /work/web
-    command: php-fpm
-
-  composer:
-    image: composer
-    volumes:
-      - .:/app
-    working_dir: /app
-# 使いたい人はコメントアウトを解除してください
-# phpmyadmin:
-#   image: phpmyadmin/phpmyadmin
-#   environment:
-#     - PMA_ARBITRARY=0
-#     - PMA_HOSTS=mysql
-#     - PMA_USER=posse
-#     - PMA_PASSWORD=password
-#   links:
-#     - mysql
-#   ports:
-#     - 1234:80
+    # phpmyadmin:
+    #   image: phpmyadmin/phpmyadmin
+    #   environment:
+    #     - PMA_ARBITRARY=0
+    #     - PMA_HOSTS=mysql
+    #     - PMA_USER=posse
+    #     - PMA_PASSWORD=password
+    #   inks:
+    #     - mysql
+    #   ports:
+    #     - 1234:80
