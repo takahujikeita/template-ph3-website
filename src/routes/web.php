@@ -4,8 +4,6 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\QuestionsController;
-use App\Http\Controllers\ChoicesController;
 use App\Http\Controllers\QuizzesController;
 
 
@@ -14,9 +12,39 @@ Route::get('/test', [TestController::class, 'test'])
     ->name('test');
 Route::get('/users', [UserController::class, 'users'])
     ->name('users');
-Route::resource('questions', QuestionsController::class);
-Route::resource('choices', ChoicesController::class);
-Route::resource('quizzes', QuizzesController::class);
+    // 一覧表示のルート
+Route::get('/quizzes', [QuizzesController::class, 'index'])
+    ->name('quizzes.index');
+    Route::get('/quizzes/admin',[QuizzesController::class,'admin'])
+->middleware('admin')
+->name('quizzes.admin');
+// クイズ新規作成するためのルート
+Route::get('/quizzes/create',[QuizzesController::class,'create'])
+->middleware('admin')
+->name('quizzes.create');
+// 投稿データ保存用のルート作成
+Route::post('/quizzes',[QuizzesController::class,'store'])
+->name('quizzes.store');
+    // クイズ画面の表示ルート
+Route::get('/quizzes/{id}', [QuizzesController::class, 'show'])
+    ->name('quizzes.show');
+    // 編集画面表示のルート
+Route::get('/quizzes/{id}/edit', [QuizzesController::class, 'edit'])
+    ->name('quizzes.edit');
+    // 更新の時のルート
+Route::patch('/quizzes/{id}', [QuizzesController::class,'update'])
+    ->name('quizzes.update');
+    // 問題削除のためのルート
+Route::delete('/quizzes/{id}',[QuizzesController::class,'destroy'])
+->name('quizzes.destroy');
+
+
+// Route::get('/quizzes/admin',[QuizzesController::class,'admin'])
+// ->middleware('admin')
+// ->name('quizzes.admin');
+
+
+
 
 /*
 |--------------------------------------------------------------------------

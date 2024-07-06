@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\questions;
+use App\Models\Question;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,11 +13,9 @@ class QuestionsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        questions::create([
-            'image' => '/image/sample.jpg',
-            'text' => "日本のIT人材が2030年には最大どれくらい不足すると言われているでしょうか？",
-            'supplement' => "設問補足",
-            'quiz_id' => '2'
+        Question::create([
+            'text'=>'IoTとは何の略でしょう？',
+            'quiz_id'=> 1
         ]);
     }
 }

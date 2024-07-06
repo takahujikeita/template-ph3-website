@@ -5,14 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class questions extends Model
+class Choice extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'image',
         'text',
-        'supplement',
-        'quiz_id',
+        'is_correct',
     ];
+
+    public function questions(){
+        return $this -> hasMany(Question::class);
+    }
 }
